@@ -12,8 +12,8 @@ require_once '../vendor/autoload.php';
 
 do {
     $a = new monitorV1();
-    $b = $a->addValue("php.a",rand(200,800));
+    $b = $a->addValue("php.a",30);
     var_dump($b);
-    sleep(5);
+    sleep(2);
 } while (true);
 return true;

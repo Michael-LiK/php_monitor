@@ -6,6 +6,7 @@
  * Date: 18-11-1
  * Time: 下午3:52
  */
+
 namespace monitor\php_monitor;
 require_once '../vendor/autoload.php';
 
@@ -49,27 +50,27 @@ Class monitorV1
         }
         //释放信号量
         sem_release($arr_signal);
-            // 获得信号量
-            sem_acquire($signal);
+        // 获得信号量
+        sem_acquire($signal);
 
-            if (shm_has_var($shm_id, $share_key)) {
-                // 有值,加一
-                $count = shm_get_var($shm_id, $share_key);
-                $count++;
-                shm_put_var($shm_id, $share_key, $count);
-            } else {
-                // 无值,初始化
-                $count = 1;
-                shm_put_var($shm_id, $share_key, $count);
-            }
-            //释放信号量
-            sem_release($signal);
+        if (shm_has_var($shm_id, $share_key)) {
+            // 有值,加一
+            $count = shm_get_var($shm_id, $share_key);
+            $count++;
+            shm_put_var($shm_id, $share_key, $count);
+        } else {
+            // 无值,初始化
+            $count = 1;
+            shm_put_var($shm_id, $share_key, $count);
+        }
+        //释放信号量
+        sem_release($signal);
 
-            return true;
+        return true;
 
     }
 
-    public function addValue($name,$value)
+    public function addValue($name, $value)
     {
 
         //开辟共享内存
@@ -107,26 +108,26 @@ Class monitorV1
         }
         //释放信号量
         sem_release($arr_signal);
-            // 获得信号量
-            sem_acquire($signal);
+        // 获得信号量
+        sem_acquire($signal);
 
-            if (shm_has_var($shm_id, $share_key)) {
-                // 有值,加一
-                $count = shm_get_var($shm_id, $share_key);
-                $count+=$value;
-                shm_put_var($shm_id, $share_key, $count);
-            } else {
-                // 无值,初始化
-                $count = 1;
-                shm_put_var($shm_id, $share_key, $count);
-            }
-            //释放信号量
-            sem_release($signal);
+        if (shm_has_var($shm_id, $share_key)) {
+            // 有值,加一
+            $count = shm_get_var($shm_id, $share_key);
+            $count += $value;
+            shm_put_var($shm_id, $share_key, $count);
+        } else {
+            // 无值,初始化
+            $count = $value;
+            shm_put_var($shm_id, $share_key, $count);
+        }
+        //释放信号量
+        sem_release($signal);
         return true;
 
     }
 
-    public function set($name,$value)
+    public function set($name, $value)
     {
 
         //开辟共享内存

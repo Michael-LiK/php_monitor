@@ -10,7 +10,7 @@ namespace monitor\php_monitor;
 
 use GuzzleHttp\Client;
 
-require_once '../../vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 $_SERVER["SERVER_ADDR"] = "127.0.0.1";
 $_SERVER['SERVER_NAME'] = "php_monitor";
@@ -43,12 +43,6 @@ do {
         $a[$key] = shm_get_var($shm_id, $monitor_value);
         sem_release($signal);
     }
-
-
-    //清空共享内存
-    shm_remove($shm_id);
-    sem_release($arr_signal);
-
     //发送key值
     if (!empty($a)) {
         var_dump($a);
@@ -56,16 +50,20 @@ do {
         var_dump($result);
     }
 
+    //清空共享内存
+    shm_remove($shm_id);
+    sem_release($arr_signal);
+
+
+
     sleep(60);
 
 } while (true);
 
 
-function postData($data)
+function postData($data,$url)
 {
     $client = new Client();
-    $url = "http://192.168.170.29:8656/upload/attrs?serviceId=1001&hostIp=" . $_SERVER["SERVER_ADDR"] . "&hostname=" . $_SERVER['SERVER_NAME'];
-    $url = "http://192.168.170.29:8656/upload/attrs?serviceId=1001&hostIp=127.0.0.1&hostname=phpurl";
     $response = $client->request('POST', $url, ['body' => json_encode($data, JSON_UNESCAPED_UNICODE), 'headers' => ['content-type' => 'application/json']]);
 
     return json_decode($response->getBody());

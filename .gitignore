@@ -3,3 +3,5 @@
 *.lock
 *.json
 *.log
+/Service
+.gitignore
