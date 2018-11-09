@@ -16,6 +16,11 @@ Class monitorV1
     public function add($name)
     {
 
+        if(strlen($name)>8)
+        {
+            return true;
+        }
+
         //开辟共享内存
         $shm_key = ftok("abc.txt", 't');
         $shm_id = shm_attach($shm_key, 10240, 0655);
@@ -73,6 +78,11 @@ Class monitorV1
     public function addValue($name, $value)
     {
 
+        if(strlen($name)>8)
+        {
+            return true;
+        }
+
         //开辟共享内存
         $shm_key = ftok("abc.txt", 't');
         $shm_id = shm_attach($shm_key, 10240, 0655);
@@ -129,6 +139,11 @@ Class monitorV1
 
     public function set($name, $value)
     {
+
+        if(strlen($name)>8)
+        {
+            return true;
+        }
 
         //开辟共享内存
         $shm_key = ftok("abc.txt", 't');

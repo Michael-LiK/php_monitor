@@ -10,7 +10,7 @@ namespace monitor\php_monitor;
 
 use GuzzleHttp\Client;
 
-require_once '../../vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 $_SERVER["SERVER_ADDR"] = "127.0.0.1";
 $_SERVER['SERVER_NAME'] = "php_monitor";
