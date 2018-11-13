@@ -105,15 +105,18 @@ Class monitorV1
 
         // 获得信号量
         sem_acquire($arr_signal);
+
         if (shm_has_var($shm_id, $report_key)) {
             $arr_str = shm_get_var($shm_id, $report_key);
-            $key_arr = explode(" ", $arr_str);
+
+            $key_arr = explode(",", $arr_str);
+
             if (!in_array($share_key, $key_arr)) {
-                $arr_str = $arr_str . " " . $share_key;
+                $arr_str = $arr_str . "," . $share_key;
             }
             shm_put_var($shm_id, $report_key, $arr_str);
         } else {
-            $arr_str = "$share_key";
+            $arr_str = $share_key;
             shm_put_var($shm_id, $report_key, $arr_str);
         }
         //释放信号量

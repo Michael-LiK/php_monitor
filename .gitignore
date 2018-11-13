@@ -1,7 +1,5 @@
 *.iml
 *.xml
-*.lock
-*.json
 *.log
 /Service
 .gitignore

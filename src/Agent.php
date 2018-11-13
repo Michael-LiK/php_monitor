@@ -2,9 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: michael
- * Date: 18-11-2
- * Time: 下午2:43
+ * Date: 18-11-13
+ * Time: 上午11:39
  */
+
 
 namespace monitor\php_monitor;
 
@@ -32,10 +33,11 @@ do {
 
     $arr_str = shm_get_var($shm_id, $report_key);
 
-    $key_arr = explode(" ", $arr_str);
+    $key_arr = explode(",", $arr_str);
     $a = [];
     foreach ($key_arr as $value) {
-        $signal =sem_get($value);
+        var_dump($value);
+        $signal =sem_get(intval($value));
         sem_acquire($signal);
         $monitor_value = intval($value);
         $key_str = base_convert($value,10,16);
@@ -48,24 +50,23 @@ do {
     //清空共享内存
     shm_remove($shm_id);
     sem_release($arr_signal);
-
+    //定义发送的地址
+    $url = "";
     //发送key值
     if (!empty($a)) {
         var_dump($a);
-        $result = postData($a);
+        $result = postData($a,$url);
         var_dump($result);
     }
 
-    sleep(60);
+    sleep(5);
 
 } while (true);
 
 
-function postData($data)
+function postData($data,$url)
 {
     $client = new Client();
-    $url = "http://192.168.170.29:8656/upload/attrs?serviceId=1001&hostIp=" . $_SERVER["SERVER_ADDR"] . "&hostname=" . $_SERVER['SERVER_NAME'];
-    $url = "http://192.168.170.29:8656/upload/attrs?serviceId=1001&hostIp=127.0.0.1&hostname=phpurl";
     $response = $client->request('POST', $url, ['body' => json_encode($data, JSON_UNESCAPED_UNICODE), 'headers' => ['content-type' => 'application/json']]);
 
     return json_decode($response->getBody());
