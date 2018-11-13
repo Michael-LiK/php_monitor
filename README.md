@@ -2,6 +2,7 @@
 
 <p align="center"> A monitor php sdk.</p>
 
+[![Total Downloads](https://poser.pugx.org/mini-monitor/php_monitor/downloads)](https://packagist.org/packages/mini-monitor/php_monitor)
 [![License](https://poser.pugx.org/mini-monitor/php_monitor/license)](https://packagist.org/packages/mini-monitor/php_monitor)
 
 ## Installing
