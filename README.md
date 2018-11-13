@@ -8,7 +8,7 @@
 ## Installing
 
 ```shell
-$ composer require mini-monitor/php_monitor
+$ composer require mini-monitor/php_monitor dev-master
 ```
 
 ## Usage
