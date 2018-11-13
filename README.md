@@ -1,4 +1,4 @@
-<h1 align="center"> php </h1>
+<h1 align="center"> mini-monitor </h1>
 
 <p align="center"> A monitor php sdk.</p>
 
