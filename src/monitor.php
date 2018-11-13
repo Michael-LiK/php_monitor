@@ -10,7 +10,7 @@
 namespace monitor\php_monitor;
 require_once '../vendor/autoload.php';
 
-Class monitorV1
+Class monitor
 {
 
     public function add($name)

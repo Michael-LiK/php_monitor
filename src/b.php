@@ -64,7 +64,7 @@ namespace monitor\php_monitor;
 require_once '../vendor/autoload.php';
 
 do {
-    $a = new monitorV1();
+    $a = new monitor();
     $b = $a->addValue("php.b",20);
     var_dump($b);
     sleep(3);

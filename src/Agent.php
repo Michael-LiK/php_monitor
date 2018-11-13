@@ -16,6 +16,8 @@ require_once '../vendor/autoload.php';
 $_SERVER["SERVER_ADDR"] = "127.0.0.1";
 $_SERVER['SERVER_NAME'] = "php_monitor";
 
+$url = "Your upload url";
+
 do {
     $shm_key = ftok("abc.txt", 't');
     $shm_id = shm_attach($shm_key, 10240, 0655);
@@ -51,7 +53,6 @@ do {
     shm_remove($shm_id);
     sem_release($arr_signal);
     //定义发送的地址
-    $url = "";
     //发送key值
     if (!empty($a)) {
         var_dump($a);
