@@ -15,9 +15,17 @@ There are three functions you can use .
 
 example:
 
-``` add() ```  
-``` addValue() ```
-``` set() ```
+```shell 
+add() 
+```  
+
+```shell 
+addValue()
+```
+
+```shell 
+set() 
+```
 
 ## Contributing
 
