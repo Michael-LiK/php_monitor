@@ -1,5 +1,5 @@
 {
-    "name": "monitor\/php",
+    "name": "MiniMonitor\/php_monitor",
     "description": "A php_monitor sdk",
     "license": "MIT",
     "authors": [
