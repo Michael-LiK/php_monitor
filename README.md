@@ -11,7 +11,11 @@ $ composer require mini-monitor/php_monitor
 
 ## Usage
 
-TODO
+There are three functions you can use .
+example:
+``` add() ```  
+``` addValue() ```
+``` set() ```
 
 ## Contributing
 
