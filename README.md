@@ -12,7 +12,9 @@ $ composer require mini-monitor/php_monitor
 ## Usage
 
 There are three functions you can use .
+
 example:
+
 ``` add() ```  
 ``` addValue() ```
 ``` set() ```
