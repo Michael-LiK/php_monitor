@@ -6,7 +6,7 @@
 ## Installing
 
 ```shell
-$ composer require monitor/php -vvv
+$ composer require mini-monitor/php_monitor
 ```
 
 ## Usage
