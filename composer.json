@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "monitor\\php_monitor\\": "./src/"
+            "MiniMonitor\\php_monitor\\": "./src/"
         }
     }
 }
