@@ -17,16 +17,18 @@ There are three functions you can use .
 
 example:
 
+Add one to on the key
 ```shell 
-add() 
+add($key) 
 ```  
-
+To add a value of key
 ```shell 
-addValue()
+addValue($key,$value)
 ```
 
+To set a value of key
 ```shell 
-set() 
+set($key,$value)  
 ```
 
 ## Contributing
