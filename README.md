@@ -1,4 +1,4 @@
-![avatar](http://cdn.chinanalan.com/mini-logo.jpg)
+<div align=center>![avatar](http://cdn.chinanalan.com/mini-logo.jpg)
 <h1 align="center"> mini-monitor </h1>
 
 <p align="center"> A monitor php sdk.</p>
