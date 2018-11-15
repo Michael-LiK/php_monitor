@@ -1,4 +1,4 @@
-<h1 align="center"> php </h1>
+<h1 align="center"> mini-monitor </h1>
 
 <p align="center"> A monitor php sdk.</p>
 
@@ -8,7 +8,7 @@
 ## Installing
 
 ```shell
-$ composer require mini-monitor/php_monitor
+$ composer require mini-monitor/php_monitor dev-master
 ```
 
 ## Usage
