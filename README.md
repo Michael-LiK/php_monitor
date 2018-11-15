@@ -1,5 +1,5 @@
 <div align="center">
-<img src="http://cdn.chinanalan.com/mini-logo.jpg"/>
+<img src="http://cdn.chinanalan.com/mini-logo.jpg" width=50% height=50%/>
 </div>
 <h1 align="center"> mini-monitor </h1>
 
