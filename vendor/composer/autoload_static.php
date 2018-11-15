@@ -13,10 +13,6 @@ class ComposerStaticInit928fccda03603d57a11a6d4cc481dbd6
     );
 
     public static $prefixLengthsPsr4 = array (
-        'm' => 
-        array (
-            'monitor\\php_monitor\\' => 20,
-        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -30,10 +26,6 @@ class ComposerStaticInit928fccda03603d57a11a6d4cc481dbd6
     );
 
     public static $prefixDirsPsr4 = array (
-        'monitor\\php_monitor\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
@@ -52,11 +44,18 @@ class ComposerStaticInit928fccda03603d57a11a6d4cc481dbd6
         ),
     );
 
+    public static $classMap = array (
+        'monitor\\php_monitor\\mathTool' => __DIR__ . '/../..' . '/src/mathTool.php',
+        'monitor\\php_monitor\\monitor' => __DIR__ . '/../..' . '/src/monitor.php',
+        'monitor\\php_monitor\\monitorV2' => __DIR__ . '/../..' . '/src/V2/monitorV2.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit928fccda03603d57a11a6d4cc481dbd6::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit928fccda03603d57a11a6d4cc481dbd6::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit928fccda03603d57a11a6d4cc481dbd6::$classMap;
 
         }, null, ClassLoader::class);
     }
