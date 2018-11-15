@@ -1,4 +1,10 @@
-<div align=center>![avatar](http://cdn.chinanalan.com/mini-logo.jpg)</div>
+<img src="http://cdn.chinanalan.com/mini-logo.jpg"/>
+</div>
+
+作者：世外大帝
+链接：https://www.jianshu.com/p/d81733fe4170
+來源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
 <h1 align="center"> mini-monitor </h1>
 
 <p align="center"> A monitor php sdk.</p>
