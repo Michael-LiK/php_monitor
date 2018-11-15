@@ -16,7 +16,7 @@ require_once '../vendor/autoload.php';
 $_SERVER["SERVER_ADDR"] = "127.0.0.1";
 $_SERVER['SERVER_NAME'] = "php_monitor";
 
-$url = "Your upload url";
+$url = "Your url";
 
 do {
     $shm_key = ftok("abc.txt", 't');
@@ -60,7 +60,7 @@ do {
         var_dump($result);
     }
 
-    sleep(5);
+    sleep(60);
 
 } while (true);
 

@@ -44,17 +44,16 @@ Class monitor
         sem_acquire($arr_signal);
         if (shm_has_var($shm_id, $report_key)) {
             $arr_str = shm_get_var($shm_id, $report_key);
-            $key_arr = explode(" ", $arr_str);
+            $key_arr = explode(",", $arr_str);
             if (!in_array($share_key, $key_arr)) {
-                $arr_str = $arr_str . " " . $share_key;
+                $arr_str = $arr_str . "," . $share_key;
             }
             shm_put_var($shm_id, $report_key, $arr_str);
         } else {
             $arr_str = "$share_key";
             shm_put_var($shm_id, $report_key, $arr_str);
         }
-        //释放信号量
-        sem_release($arr_signal);
+
         // 获得信号量
         sem_acquire($signal);
 
@@ -70,6 +69,8 @@ Class monitor
         }
         //释放信号量
         sem_release($signal);
+        //释放信号量
+        sem_release($arr_signal);
 
         return true;
 
@@ -105,7 +106,6 @@ Class monitor
 
         // 获得信号量
         sem_acquire($arr_signal);
-
         if (shm_has_var($shm_id, $report_key)) {
             $arr_str = shm_get_var($shm_id, $report_key);
 
@@ -119,8 +119,6 @@ Class monitor
             $arr_str = $share_key;
             shm_put_var($shm_id, $report_key, $arr_str);
         }
-        //释放信号量
-        sem_release($arr_signal);
         // 获得信号量
         sem_acquire($signal);
 
@@ -136,6 +134,9 @@ Class monitor
         }
         //释放信号量
         sem_release($signal);
+        //释放信号量
+        sem_release($arr_signal);
+
         return true;
 
     }
@@ -172,32 +173,30 @@ Class monitor
         sem_acquire($arr_signal);
         if (shm_has_var($shm_id, $report_key)) {
             $arr_str = shm_get_var($shm_id, $report_key);
-            $key_arr = explode(" ", $arr_str);
+            $key_arr = explode(",", $arr_str);
             if (!in_array($share_key, $key_arr)) {
-                $arr_str = $arr_str . " " . $share_key;
+                $arr_str = $arr_str . "," . $share_key;
             }
             shm_put_var($shm_id, $report_key, $arr_str);
         } else {
             $arr_str = "$share_key";
             shm_put_var($shm_id, $report_key, $arr_str);
         }
-        //释放信号量
-        sem_release($arr_signal);
+
         // 获得信号量
         sem_acquire($signal);
 
-        if (shm_has_var($shm_id, $share_key)) {
-            // 有值,加一
-            $count = shm_get_var($shm_id, $share_key);
-            $count = $value;
-            shm_put_var($shm_id, $share_key, $count);
-        } else {
-            // 无值,初始化
-            $count = $value;
-            shm_put_var($shm_id, $share_key, $count);
-        }
+
+        //设置上报值
+        $count = $value;
+        shm_put_var($shm_id, $share_key, $count);
+
         //释放信号量
         sem_release($signal);
+        //释放信号量
+        sem_release($arr_signal);
+
+        return true;
 
     }
 
