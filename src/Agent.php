@@ -16,7 +16,7 @@ require_once '../vendor/autoload.php';
 $_SERVER["SERVER_ADDR"] = "127.0.0.1";
 $_SERVER['SERVER_NAME'] = "php_monitor";
 
-$url = "http://192.168.170.29:8656/upload/attrs?serviceId=1001&hostIp=127.0.0.1&hostname=phpurl";
+$url = "";
 
 do {
     $shm_key = ftok("abc.txt", 't');
