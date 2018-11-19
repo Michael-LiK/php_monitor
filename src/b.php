@@ -65,7 +65,7 @@ require_once '../vendor/autoload.php';
 
 do {
     $a = new monitor();
-    $b = $a->add("php.b");
+    $b = $a->addValue("php.teacher_late",50);
     var_dump($b);
     sleep(3);
 } while (true);

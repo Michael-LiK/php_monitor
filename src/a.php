@@ -12,7 +12,7 @@ require_once '../vendor/autoload.php';
 
 do {
     $a = new monitor();
-    $b = $a->addValue("php.a",30);
+    $b = $a->addValue("php.class_open",30);
     var_dump($b);
     sleep(2);
 } while (true);

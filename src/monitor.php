@@ -79,10 +79,6 @@ Class monitor
     public function addValue($name, $value)
     {
 
-        if(strlen($name)>8)
-        {
-            return true;
-        }
 
         //开辟共享内存
         $shm_key = ftok("abc.txt", 't');
@@ -92,14 +88,10 @@ Class monitor
         $report_name = "report";
         $report_key = base_convert(bin2hex($report_name), 16, 10);
 
-        //设定上报KEY值
-        //hash 上报KEY值，然后将16进制数转换为10进制
-        $share_key = base_convert(bin2hex($name), 16, 10);
 
         //设定信号量
 
         $arr_signal = sem_get($report_key);
-        $signal = sem_get($share_key);
 
 
         //1.先将上报KEY,存入上报集合中
@@ -107,18 +99,31 @@ Class monitor
         // 获得信号量
         sem_acquire($arr_signal);
         if (shm_has_var($shm_id, $report_key)) {
-            $arr_str = shm_get_var($shm_id, $report_key);
+            $report_str = shm_get_var($shm_id, $report_key);
+            $report_arr = json_decode($report_str);
 
-            $key_arr = explode(",", $arr_str);
-
-            if (!in_array($share_key, $key_arr)) {
-                $arr_str = $arr_str . "," . $share_key;
+            if (!in_array($name, $report_arr)) {
+                $report_arr[] = $name;
+                $share_key = 0;
+            }else{
+                $share_key = array_search($name,$report_arr);
             }
-            shm_put_var($shm_id, $report_key, $arr_str);
+
+            $report_str = json_encode($report_arr);
+            shm_put_var($shm_id, $report_key, $report_str);
         } else {
-            $arr_str = $share_key;
-            shm_put_var($shm_id, $report_key, $arr_str);
+            $share_key = 0;
+            $report_arr[]=$name;
+            $report_str = json_encode($report_arr);
+
+            shm_put_var($shm_id, $report_key, $report_str);
         }
+
+
+        //设定上报KEY值
+        //hash 上报KEY值，然后将16进制数转换为10进制
+        $signal = sem_get($share_key);
+
         // 获得信号量
         sem_acquire($signal);
 
@@ -144,11 +149,6 @@ Class monitor
     public function set($name, $value)
     {
 
-        if(strlen($name)>8)
-        {
-            return true;
-        }
-
         //开辟共享内存
         $shm_key = ftok("abc.txt", 't');
         $shm_id = shm_attach($shm_key, 10240, 0655);
@@ -157,35 +157,36 @@ Class monitor
         $report_name = "report";
         $report_key = base_convert(bin2hex($report_name), 16, 10);
 
-        //设定上报KEY值
-        //hash 上报KEY值，然后将16进制数转换为10进制
-        $share_key = base_convert(bin2hex($name), 16, 10);
 
         //设定信号量
 
         $arr_signal = sem_get($report_key);
-        $signal = sem_get($share_key);
-
-
         //1.先将上报KEY,存入上报集合中
 
         // 获得信号量
         sem_acquire($arr_signal);
         if (shm_has_var($shm_id, $report_key)) {
-            $arr_str = shm_get_var($shm_id, $report_key);
-            $key_arr = explode(",", $arr_str);
-            if (!in_array($share_key, $key_arr)) {
-                $arr_str = $arr_str . "," . $share_key;
+            $report_str = shm_get_var($shm_id, $report_key);
+            $report_arr = json_decode($report_str);
+
+            if (!in_array($name, $report_arr)) {
+                $report_arr[] = $name;
+                $share_key = 0;
+            }else{
+                $share_key = array_search($name,$report_arr);
             }
-            shm_put_var($shm_id, $report_key, $arr_str);
+
+            $report_str = json_encode($report_arr);
+            shm_put_var($shm_id, $report_key, $report_str);
         } else {
-            $arr_str = "$share_key";
-            shm_put_var($shm_id, $report_key, $arr_str);
+            $share_key = 0;
+            $report_arr[]=$name;
+            $report_str = json_encode($report_arr);
+
+            shm_put_var($shm_id, $report_key, $report_str);
         }
 
-        // 获得信号量
-        sem_acquire($signal);
-
+        $signal = sem_get($share_key);
 
         //设置上报值
         $count = $value;

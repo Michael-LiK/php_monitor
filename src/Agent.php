@@ -35,24 +35,22 @@ do {
 
     $arr_str = shm_get_var($shm_id, $report_key);
 
-    $key_arr = explode(",", $arr_str);
+    $key_arr = json_decode($arr_str);
     $a = [];
-    foreach ($key_arr as $value) {
+    foreach ($key_arr as $key => $value) {
         var_dump($value);
-        $signal =sem_get(intval($value));
+        var_dump($key);
+        $signal =sem_get($key);
         sem_acquire($signal);
-        $monitor_value = intval($value);
-        $key_str = base_convert($value,10,16);
-        $key = hex2bin($key_str);
-        $a[$key] = shm_get_var($shm_id, $monitor_value);
+        $a[$value] = shm_get_var($shm_id, $key);
         sem_release($signal);
     }
 
-
+    var_dump($key_arr);
+    var_dump($a);
     //清空共享内存
     shm_remove($shm_id);
     sem_release($arr_signal);
-    //定义发送的地址
     //发送key值
     if (!empty($a)) {
         var_dump($a);
