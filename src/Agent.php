@@ -66,8 +66,8 @@ do {
 /**
  * 发送收集数据到服务端
  *
- * @version 1.2
- * @source 1.2版本改为异步HTTP请求，不关心消息发送结果，确保不影响业务。
+ * @version 1.1.2
+ * @source 1.1.2版本改为异步HTTP请求，不关心消息发送结果，确保不影响业务。
  * @param $data
  * @param $url
  * @return mixed
