@@ -1,6 +1,6 @@
 <?php
 /**
- * @version v1.0 beta
+ * @version v1.1.1
  * Created by PhpStorm.
  * User: michael
  * Date: 18-11-1
@@ -29,13 +29,9 @@ Class monitor
         $report_name = "report";
         $report_key = intval(base_convert(bin2hex($report_name), 16, 10));
 
-        //设定上报KEY值
-        //hash 上报KEY值，然后将16进制数转换为10进制
-        $share_key = intval(base_convert(bin2hex($name), 16, 10));
 
         //设定信号量
         $arr_signal = sem_get($report_key);
-        $signal = sem_get($share_key);
 
 
         //1.先将上报KEY,存入上报集合中
@@ -43,17 +39,26 @@ Class monitor
         // 获得信号量
         sem_acquire($arr_signal);
         if (shm_has_var($shm_id, $report_key)) {
-            $arr_str = shm_get_var($shm_id, $report_key);
-            $key_arr = explode(",", $arr_str);
-            if (!in_array($share_key, $key_arr)) {
-                $arr_str = $arr_str . "," . $share_key;
-            }
-            shm_put_var($shm_id, $report_key, $arr_str);
-        } else {
-            $arr_str = "$share_key";
-            shm_put_var($shm_id, $report_key, $arr_str);
-        }
+            $report_str = shm_get_var($shm_id, $report_key);
+            $report_arr = json_decode($report_str);
 
+            if (!in_array($name, $report_arr)) {
+                $report_arr[] = $name;
+                $share_key = count($report_arr)-1;
+            }else{
+                $share_key = array_search($name,$report_arr);
+            }
+
+            $report_str = json_encode($report_arr);
+            shm_put_var($shm_id, $report_key, $report_str);
+        } else {
+            $share_key = 0;
+            $report_arr[]=$name;
+            $report_str = json_encode($report_arr);
+
+            shm_put_var($shm_id, $report_key, $report_str);
+        }
+        $signal = sem_get($share_key);
         // 获得信号量
         sem_acquire($signal);
 
@@ -104,7 +109,7 @@ Class monitor
 
             if (!in_array($name, $report_arr)) {
                 $report_arr[] = $name;
-                $share_key = 0;
+                $share_key = count($report_arr)-1;
             }else{
                 $share_key = array_search($name,$report_arr);
             }
@@ -120,8 +125,7 @@ Class monitor
         }
 
 
-        //设定上报KEY值
-        //hash 上报KEY值，然后将16进制数转换为10进制
+        //设定上报VALUE值
         //设置信号量
         $signal = sem_get($share_key);
         // 获得信号量
@@ -170,7 +174,7 @@ Class monitor
 
             if (!in_array($name, $report_arr)) {
                 $report_arr[] = $name;
-                $share_key = 0;
+                $share_key = count($report_arr)-1;
             }else{
                 $share_key = array_search($name,$report_arr);
             }

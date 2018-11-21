@@ -16,7 +16,7 @@ require_once '../vendor/autoload.php';
 $_SERVER["SERVER_ADDR"] = "127.0.0.1";
 $_SERVER['SERVER_NAME'] = "php_monitor";
 
-$url = "";
+$url = "Your Url";
 
 do {
     $shm_key = ftok("abc.txt", 't');
@@ -77,5 +77,5 @@ function postData($data,$url)
     $client = new Client();
     $response = $client->requestAsync('POST', $url, ['body' => json_encode($data, JSON_UNESCAPED_UNICODE), 'headers' => ['content-type' => 'application/json']]);
 
-    return json_decode($response->getBody());
+    return $response;
 }
