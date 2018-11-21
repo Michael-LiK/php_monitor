@@ -122,8 +122,8 @@ Class monitor
 
         //设定上报KEY值
         //hash 上报KEY值，然后将16进制数转换为10进制
+        //设置信号量
         $signal = sem_get($share_key);
-
         // 获得信号量
         sem_acquire($signal);
 
@@ -157,7 +157,6 @@ Class monitor
         $report_name = "report";
         $report_key = base_convert(bin2hex($report_name), 16, 10);
 
-
         //设定信号量
 
         $arr_signal = sem_get($report_key);
@@ -185,8 +184,10 @@ Class monitor
 
             shm_put_var($shm_id, $report_key, $report_str);
         }
-
+        //设置信号量
         $signal = sem_get($share_key);
+        // 获得信号量
+        sem_acquire($signal);
 
         //设置上报值
         $count = $value;
