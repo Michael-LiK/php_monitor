@@ -63,10 +63,19 @@ do {
 } while (true);
 
 
+/**
+ * 发送收集数据到服务端
+ *
+ * @version 1.2
+ * @source 1.2版本改为异步HTTP请求，不关心消息发送结果，确保不影响业务。
+ * @param $data
+ * @param $url
+ * @return mixed
+ */
 function postData($data,$url)
 {
     $client = new Client();
-    $response = $client->request('POST', $url, ['body' => json_encode($data, JSON_UNESCAPED_UNICODE), 'headers' => ['content-type' => 'application/json']]);
+    $response = $client->requestAsync('POST', $url, ['body' => json_encode($data, JSON_UNESCAPED_UNICODE), 'headers' => ['content-type' => 'application/json']]);
 
     return json_decode($response->getBody());
 }
