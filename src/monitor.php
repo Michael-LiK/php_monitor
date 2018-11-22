@@ -7,7 +7,7 @@
  * Time: 下午3:52
  */
 
-namespace php_monitor\src;
+namespace monitor\php_monitor\src;
 
 Class monitor
 {
@@ -15,8 +15,7 @@ Class monitor
     public function add($name)
     {
 
-        $vendorDir = dirname(dirname(__FILE__));
-        $baseDir = dirname($vendorDir);
+        $baseDir = dirname(__FILE__);
 
         //开辟共享内存
         $shm_key = ftok($baseDir."/abc.txt", 't');

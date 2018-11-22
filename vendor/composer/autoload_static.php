@@ -45,9 +45,9 @@ class ComposerStaticInit928fccda03603d57a11a6d4cc481dbd6
     );
 
     public static $classMap = array (
-        'monitor\\php_monitor\\Agent' => __DIR__ . '/../..' . '/src/Agent.php',
-        'monitor\\php_monitor\\ServiceProvider' => __DIR__ . '/../..' . '/src/ServiceProvider.php',
+        'monitor\\php_monitor\\src\\Agent' => __DIR__ . '/../..' . '/src/Agent.php',
         'monitor\\php_monitor\\src\\monitor' => __DIR__ . '/../..' . '/src/monitor.php',
+        'php_monitor\\src\\ServiceProvider' => __DIR__ . '/../..' . '/src/ServiceProvider.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
