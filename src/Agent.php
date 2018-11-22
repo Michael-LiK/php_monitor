@@ -76,6 +76,11 @@ function postData($data,$url)
 {
     $client = new Client();
     $response = $client->requestAsync('POST', $url, ['body' => json_encode($data, JSON_UNESCAPED_UNICODE), 'headers' => ['content-type' => 'application/json']]);
-
-    return $response;
+    $response->then(
+    function (\Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+    );
+    $response->wait();
+    return true;
 }
