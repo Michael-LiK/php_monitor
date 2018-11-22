@@ -23,8 +23,9 @@ class Agent
 
     function upload()
     {
+        $baseDir = dirname(__FILE__);
         do {
-            $shm_key = ftok("abc.txt", 't');
+            $shm_key = ftok($baseDir."/abc.txt", 't');
             $shm_id = shm_attach($shm_key, 10240, 0655);
             //hash 上报集合KEY值，然后将16进制数转换为10进制
             $report_key = intval(base_convert(bin2hex('report'), 16, 10));
