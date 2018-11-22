@@ -6,13 +6,13 @@
  * Time: 下午2:32
  */
 
-namespace monitor\php_monitor\src;
+namespace php_monitor\src;
 
 require_once '../vendor/autoload.php';
 
 do {
     $a = new monitor();
-    $b = $a->addValue("php.class_open",30);
+    $b = $a->add("php.class_open");
     var_dump($b);
     sleep(2);
 } while (true);

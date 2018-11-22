@@ -7,8 +7,7 @@
  * Time: 下午3:52
  */
 
-namespace monitor\php_monitor\src;
-require_once '../vendor/autoload.php';
+namespace php_monitor\src;
 
 Class monitor
 {
@@ -16,13 +15,11 @@ Class monitor
     public function add($name)
     {
 
-        if(strlen($name)>8)
-        {
-            return true;
-        }
+        $vendorDir = dirname(dirname(__FILE__));
+        $baseDir = dirname($vendorDir);
 
         //开辟共享内存
-        $shm_key = ftok("abc.txt", 't');
+        $shm_key = ftok($baseDir."/abc.txt", 't');
         $shm_id = shm_attach($shm_key, 10240, 0655);
 
         //hash 上报集合KEY值，然后将16进制数转换为10进制

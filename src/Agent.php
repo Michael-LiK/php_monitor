@@ -7,11 +7,10 @@
  */
 
 
-namespace monitor\php_monitor;
+namespace php_monitor\src;
 
 use GuzzleHttp\Client;
 
-require_once '../vendor/autoload.php';
 
 class Agent
 {

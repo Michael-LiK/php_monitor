@@ -1,7 +1,6 @@
 <?php
-namespace monitor\php_monitor\src;
+namespace php_monitor\src;
 
-require_once '../vendor/autoload.php';
 
 do {
     $a = new monitor();
@@ -9,4 +8,5 @@ do {
     var_dump($b);
     sleep(5);
 } while (true);
+
 return true;

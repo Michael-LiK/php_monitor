@@ -6,7 +6,7 @@
  * Time: 下午3:05
  */
 
-namespace monitor\php_monitor;
+namespace  php_monitor\src;
 require_once '../vendor/autoload.php';
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
