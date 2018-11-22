@@ -7,7 +7,7 @@
  * Time: 下午3:52
  */
 
-namespace monitor\php_monitor;
+namespace monitor\php_monitor\src;
 require_once '../vendor/autoload.php';
 
 Class monitor
