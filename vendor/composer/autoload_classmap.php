@@ -6,7 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'monitor\\php_monitor\\mathTool' => $baseDir . '/src/mathTool.php',
-    'monitor\\php_monitor\\monitor' => $baseDir . '/src/monitor.php',
-    'monitor\\php_monitor\\monitorV2' => $baseDir . '/src/V2/monitorV2.php',
+    'monitor\\php_monitor\\Agent' => $baseDir . '/src/Agent.php',
+    'monitor\\php_monitor\\ServiceProvider' => $baseDir . '/src/ServiceProvider.php',
+    'monitor\\php_monitor\\src\\monitor' => $baseDir . '/src/monitor.php',
 );
