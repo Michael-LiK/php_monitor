@@ -80,9 +80,9 @@ Class monitor
     public function addValue($name, $value)
     {
 
-
+        $baseDir = dirname(__FILE__);
         //开辟共享内存
-        $shm_key = ftok("abc.txt", 't');
+        $shm_key = ftok($baseDir."/abc.txt", 't');
         $shm_id = shm_attach($shm_key, 10240, 0655);
 
         //hash 上报集合KEY值，然后将16进制数转换为10进制
@@ -148,9 +148,9 @@ Class monitor
 
     public function set($name, $value)
     {
-
+        $baseDir = dirname(__FILE__);
         //开辟共享内存
-        $shm_key = ftok("abc.txt", 't');
+        $shm_key = ftok($baseDir."/abc.txt", 't');
         $shm_id = shm_attach($shm_key, 10240, 0655);
 
         //hash 上报集合KEY值，然后将16进制数转换为10进制
