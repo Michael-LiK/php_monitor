@@ -1,5 +1,5 @@
 <?php
-namespace monitor\php_monitor\src;
+namespace minimonitor\src;
 
 
 do {

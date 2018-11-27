@@ -7,9 +7,10 @@
  */
 
 
-namespace monitor\php_monitor\src;
+namespace minimonitor\src;
 
 use GuzzleHttp\Client;
+use http\Exception;
 
 
 class Agent
@@ -52,17 +53,17 @@ class Agent
                 sem_release($signal);
             }
 
-            var_dump($key_arr);
-            var_dump($a);
             //清空共享内存
             shm_remove($shm_id);
             sem_release($arr_signal);
             //发送key值
 
             if (!empty($a)) {
-                var_dump($a);
-                $result = $this->postData($a, $this->url);
-                var_dump($result);
+                try {
+                    $result = $this->postData($a, $this->url);
+                } catch (\Exception $e) {
+                    throw new \Exception($e->getMessage());
+                }
             }
 
             sleep(60);

@@ -59,7 +59,7 @@
 //
 //
 //
-namespace monitor\php_monitor\src;
+namespace minimonitor\src;
 
 require_once '../vendor/autoload.php';
 

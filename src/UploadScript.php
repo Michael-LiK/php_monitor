@@ -8,7 +8,7 @@
 namespace monitor\php_monitor;
 require_once '../vendor/autoload.php';
 
-$Agent = new Agent($this->url);
+$Agent = new Agent();
 
 $Agent->upload();
 
