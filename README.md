@@ -6,7 +6,9 @@
 <p align="center"> A monitor php sdk.</p>
 
 [![Build Status](https://travis-ci.org/Michael-LiK/php_monitor.svg?branch=master)](https://travis-ci.org/Michael-LiK/php_monitor)
+[![Latest Stable Version](https://poser.pugx.org/mini-monitor/php_monitor/v/stable)](https://packagist.org/packages/mini-monitor/php_monitor)
 [![Total Downloads](https://poser.pugx.org/mini-monitor/php_monitor/downloads)](https://packagist.org/packages/mini-monitor/php_monitor)
+[![Latest Unstable Version](https://poser.pugx.org/mini-monitor/php_monitor/v/unstable)](https://packagist.org/packages/mini-monitor/php_monitor)
 [![License](https://poser.pugx.org/mini-monitor/php_monitor/license)](https://packagist.org/packages/mini-monitor/php_monitor)
 
 ## Installing
