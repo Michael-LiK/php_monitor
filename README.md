@@ -4,7 +4,7 @@
 <h1 align="center"> mini-monitor </h1>
 
 <p align="center"> A monitor php sdk.</p>
-
+https://travis-ci.org/Michael-LiK/php_monitor.svg?branch=master
 [![Total Downloads](https://poser.pugx.org/mini-monitor/php_monitor/downloads)](https://packagist.org/packages/mini-monitor/php_monitor)
 [![License](https://poser.pugx.org/mini-monitor/php_monitor/license)](https://packagist.org/packages/mini-monitor/php_monitor)
 
