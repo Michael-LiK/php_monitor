@@ -7,12 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace PHPUnit\Framework\Constraint;
-
-use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Util\InvalidArgumentHelper;
-use SebastianBergmann\Comparator\ComparisonFailure;
-use SebastianBergmann\Comparator\Factory as ComparatorFactory;
 
 /**
  * Constraint that checks if one value is equal to another.
@@ -23,7 +17,7 @@ use SebastianBergmann\Comparator\Factory as ComparatorFactory;
  *
  * The expected value is passed in the constructor.
  */
-class IsEqual extends Constraint
+class PHPUnit_Framework_Constraint_IsEqual extends PHPUnit_Framework_Constraint
 {
     /**
      * @var mixed
@@ -51,32 +45,37 @@ class IsEqual extends Constraint
     protected $ignoreCase = false;
 
     /**
+     * @var SebastianBergmann\Comparator\ComparisonFailure
+     */
+    protected $lastFailure;
+
+    /**
      * @param mixed $value
      * @param float $delta
      * @param int   $maxDepth
      * @param bool  $canonicalize
      * @param bool  $ignoreCase
      *
-     * @throws \PHPUnit\Framework\Exception
+     * @throws PHPUnit_Framework_Exception
      */
     public function __construct($value, $delta = 0.0, $maxDepth = 10, $canonicalize = false, $ignoreCase = false)
     {
         parent::__construct();
 
-        if (!\is_numeric($delta)) {
-            throw InvalidArgumentHelper::factory(2, 'numeric');
+        if (!is_numeric($delta)) {
+            throw PHPUnit_Util_InvalidArgumentHelper::factory(2, 'numeric');
         }
 
-        if (!\is_int($maxDepth)) {
-            throw InvalidArgumentHelper::factory(3, 'integer');
+        if (!is_int($maxDepth)) {
+            throw PHPUnit_Util_InvalidArgumentHelper::factory(3, 'integer');
         }
 
-        if (!\is_bool($canonicalize)) {
-            throw InvalidArgumentHelper::factory(4, 'boolean');
+        if (!is_bool($canonicalize)) {
+            throw PHPUnit_Util_InvalidArgumentHelper::factory(4, 'boolean');
         }
 
-        if (!\is_bool($ignoreCase)) {
-            throw InvalidArgumentHelper::factory(5, 'boolean');
+        if (!is_bool($ignoreCase)) {
+            throw PHPUnit_Util_InvalidArgumentHelper::factory(5, 'boolean');
         }
 
         $this->value        = $value;
@@ -102,7 +101,7 @@ class IsEqual extends Constraint
      *
      * @return mixed
      *
-     * @throws ExpectationFailedException
+     * @throws PHPUnit_Framework_ExpectationFailedException
      */
     public function evaluate($other, $description = '', $returnResult = false)
     {
@@ -113,7 +112,7 @@ class IsEqual extends Constraint
             return true;
         }
 
-        $comparatorFactory = ComparatorFactory::getInstance();
+        $comparatorFactory = SebastianBergmann\Comparator\Factory::getInstance();
 
         try {
             $comparator = $comparatorFactory->getComparatorFor(
@@ -128,13 +127,13 @@ class IsEqual extends Constraint
                 $this->canonicalize,
                 $this->ignoreCase
             );
-        } catch (ComparisonFailure $f) {
+        } catch (SebastianBergmann\Comparator\ComparisonFailure $f) {
             if ($returnResult) {
                 return false;
             }
 
-            throw new ExpectationFailedException(
-                \trim($description . "\n" . $f->getMessage()),
+            throw new PHPUnit_Framework_ExpectationFailedException(
+                trim($description . "\n" . $f->getMessage()),
                 $f
             );
         }
@@ -151,28 +150,28 @@ class IsEqual extends Constraint
     {
         $delta = '';
 
-        if (\is_string($this->value)) {
-            if (\strpos($this->value, "\n") !== false) {
+        if (is_string($this->value)) {
+            if (strpos($this->value, "\n") !== false) {
                 return 'is equal to <text>';
+            } else {
+                return sprintf(
+                    'is equal to <string:%s>',
+                    $this->value
+                );
+            }
+        } else {
+            if ($this->delta != 0) {
+                $delta = sprintf(
+                    ' with delta <%F>',
+                    $this->delta
+                );
             }
 
-            return \sprintf(
-                'is equal to "%s"',
-                $this->value
+            return sprintf(
+                'is equal to %s%s',
+                $this->exporter->export($this->value),
+                $delta
             );
         }
-
-        if ($this->delta != 0) {
-            $delta = \sprintf(
-                ' with delta <%F>',
-                $this->delta
-            );
-        }
-
-        return \sprintf(
-            'is equal to %s%s',
-            $this->exporter->export($this->value),
-            $delta
-        );
     }
 }
