@@ -24,10 +24,12 @@
 
 基于这样的背景，我进行了本次项目的开发，已应对日常开发对业务可用性的关注。
 
-技术选型：采用 php_monitor + influxdb + grafana + email + dingding 
+技术选型：采用 php_monitor + influxdb + grafana
 
 功能分配：
-php_monitor:负责业务的上报与收集。
+php_monitor:
+
+负责业务的上报与收集。
 
 influxd:时序性数据库 负责监控数据的持久化。
 
