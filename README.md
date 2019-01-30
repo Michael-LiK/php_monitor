@@ -27,9 +27,8 @@
 技术选型：采用 php_monitor + influxdb + grafana
 
 功能分配：
-php_monitor:
 
-负责业务的上报与收集。
+php_monitor:负责业务的上报与收集。
 
 influxd:时序性数据库 负责监控数据的持久化。
 
