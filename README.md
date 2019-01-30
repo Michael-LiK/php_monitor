@@ -22,7 +22,7 @@ $ composer require mini-monitor/php_monitor dev-master
 
 ## 使用方式
 
-There are three functions you can use .
+这里有三种功能你可以使用。
 
 例子:
 
