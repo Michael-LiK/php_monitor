@@ -34,6 +34,9 @@ influxd:时序性数据库 负责监控数据的持久化。
 
 grafana:是一个开源的度量分析和可视化套件。 负责监控数据的可视化，同时可配置 email和dingding机器人等报警。
 
+## 依赖
+php 7.0+ 同时需开启php内置扩展sysvsem、sysvshm
+
 ## 安装
 
 ```shell
