@@ -11,6 +11,54 @@
 [![Latest Unstable Version](https://poser.pugx.org/mini-monitor/php_monitor/v/unstable)](https://packagist.org/packages/mini-monitor/php_monitor)
 [![License](https://poser.pugx.org/mini-monitor/php_monitor/license)](https://packagist.org/packages/mini-monitor/php_monitor)
 
+
+-----------------------------------------------------------------------------------
+Chinese Doc
+## 安装
+
+```shell
+$ composer require mini-monitor/php_monitor dev-master
+```
+
+## 使用方式
+
+There are three functions you can use .
+
+例子:
+
+为上报数据加一
+```shell 
+add($key) 
+```  
+为上报数据增加指定值
+```shell 
+addValue($key,$value)
+```
+
+为上报数据设置指定值
+```shell 
+set($key,$value)  
+```
+
+##接下来要做的是
+1.
+
+
+
+## 一起创造
+
+你可以通过一下几种方式进行代码贡献。
+
+1. 通过这个链接提交问题 [issue tracker](https://github.com/monitor/php/issues).
+2. 帮助解答已存在的相应问题 [issue tracker](https://github.com/monitor/php/issues).
+3. 提交新的功能并更新文档.
+
+
+## 协议
+本开源项目遵守MIT协议
+
+-----------------------------------------------------------------------------------
+English Doc
 ## Installing
 
 ```shell
@@ -36,6 +84,10 @@ To set a value of key
 ```shell 
 set($key,$value)  
 ```
+
+##TODO LISTS
+
+
 
 ## Contributing
 
