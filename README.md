@@ -72,6 +72,7 @@ set($key,$value)
 2. 帮助解答已存在的相应问题 [issue tracker](https://github.com/monitor/php/issues).
 3. 提交新的功能并更新文档.
 
+本人开发经验较少，可能会存在很多不足，敬请谅解。
 
 ## 协议
 本开源项目遵守MIT协议
