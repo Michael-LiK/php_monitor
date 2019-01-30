@@ -3,7 +3,7 @@
 </div>
 <h1 align="center"> mini-monitor </h1>
 
-<p align="center"> A monitor php sdk.</p>
+<p align="center"> A monitor php </p>
 
 [![Build Status](https://travis-ci.org/Michael-LiK/php_monitor.svg?branch=master)](https://travis-ci.org/Michael-LiK/php_monitor)
 [![Latest Stable Version](https://poser.pugx.org/mini-monitor/php_monitor/v/stable)](https://packagist.org/packages/mini-monitor/php_monitor)
@@ -13,7 +13,15 @@
 
 
 -----------------------------------------------------------------------------------
-Chinese Doc
+中文文档
+
+## 项目背景
+目前市面上大多数监控是针对服务器的CPU、内存占用率、网络流量等，这一些都是偏运维层面的监控。对开发人员来说，大家更关注自己的服务是否有挂、业务被调用的次数，如果是有条件的调用还需要关注调用的返回值统计、成功和失败的次数等。
+现有的成熟解决方案主要有两种，一是通过日志分析，在服务中进行埋点，后期进行日志分析。第二种是通过业务调用时进行上报。
+这两种方案都可以满足需求，但同时也存在着各自的不足，日志分析的方式较难配置。第二种业务上报模式多是通过每次调用时进行上报，这也占用了大量的带宽资源，当访问量过大时，这样的上报对监控收集端来说相对于巨大的DDOS攻击，简直堪比灾难。
+
+
+
 ## 安装
 
 ```shell
