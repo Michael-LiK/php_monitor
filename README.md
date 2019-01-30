@@ -26,22 +26,21 @@ $ composer require mini-monitor/php_monitor dev-master
 
 例子:
 
-为上报数据加一
+1.为上报数据加一
 ```shell 
 add($key) 
 ```  
-为上报数据增加指定值
+2.为上报数据增加指定值
 ```shell 
 addValue($key,$value)
 ```
-
-为上报数据设置指定值
+3.为上报数据设置指定值
 ```shell 
 set($key,$value)  
 ```
 
 ##接下来要做的是
-1.
+1.增加服务端进行数据收集。
 
 
 
